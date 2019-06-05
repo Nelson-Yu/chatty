@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: {name: 'Bob'},
+      currentUser: 'Anonymous',
       messages: []
     };
     this.socket = new WebSocket('ws://localhost:3001')
@@ -36,11 +36,16 @@ class App extends Component {
     // }, 3000);
   }
 
+  handleNameChange = (event) => {
+    this.setState({currentUser: event.target.value});
+  }
+
   addNewMessage = (event) => {
     if(event.key === 'Enter'){
+      const currentUser = (this.state.currentUser.length <= 0 ? 'Anonymous' : this.state.currentUser);
       const contentInput = event.target;
       const newMessage = {
-        username: this.state.currentUser.name, 
+        username: currentUser, 
         content: contentInput.value
       };
       this.socket.send(JSON.stringify(newMessage))
@@ -53,7 +58,11 @@ class App extends Component {
       <Fragment>
         <NavBar/>
         <MessageList messages={this.state.messages}/>
-        <ChatBar name={this.state.currentUser.name} addNewMessage={this.addNewMessage}/>
+        <ChatBar 
+        name={this.state.currentUser} 
+        addNewMessage={this.addNewMessage} 
+        handleNameChange={this.handleNameChange}
+        />
       </Fragment>
     );
   }

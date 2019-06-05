@@ -19,10 +19,10 @@ class App extends Component {
         }
       ]
     };
+    this.socket = new WebSocket('ws://localhost:3001')
   }
   
   componentDidMount() {
-    this.socket = new WebSocket('ws://localhost:3001')
     this.socket.onopen = (event) => {
       console.log('Connected to server');
     }
@@ -42,14 +42,15 @@ class App extends Component {
     if(evt.key === 'Enter'){
       const index = this.state.messages.length + 1;
       const contentInput = evt.target;
-      const oldMessage = this.state.messages;
+      // const oldMessage = this.state.messages;
       const newMessage = {
         key: index, 
         username: this.state.currentUser.name, 
         content: contentInput.value
       };
-      const messages = [...oldMessage, newMessage];
-      this.setState({messages: messages});
+      // const messages = [...oldMessage, newMessage];
+      // this.setState({messages: messages});
+      this.socket.send(JSON.stringify(newMessage))
       contentInput.value = "";
     }
   }

@@ -17,6 +17,13 @@ class App extends Component {
     this.socket.onopen = (event) => {
       console.log('Connected to server');
     }
+    this.socket.onmessage = (event) => {
+      console.log(event);
+      const receievedMessage = JSON.parse(event.data);
+      const oldMessages = this.state.messages;
+      const newMessages = oldMessages.concat(receievedMessage);
+      this.setState({messages: newMessages});
+    }
     // console.log("componentDidMount <App />");
     // setTimeout(() => {
     //   console.log("Simulating incoming message");
@@ -29,18 +36,13 @@ class App extends Component {
     // }, 3000);
   }
 
-  addNewMessage = (evt) => {
-    if(evt.key === 'Enter'){
-      const index = this.state.messages.length + 1;
-      const contentInput = evt.target;
-      // const oldMessage = this.state.messages;
+  addNewMessage = (event) => {
+    if(event.key === 'Enter'){
+      const contentInput = event.target;
       const newMessage = {
-        key: index, 
         username: this.state.currentUser.name, 
         content: contentInput.value
       };
-      // const messages = [...oldMessage, newMessage];
-      // this.setState({messages: messages});
       this.socket.send(JSON.stringify(newMessage))
       contentInput.value = "";
     }

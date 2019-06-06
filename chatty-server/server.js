@@ -29,17 +29,32 @@ wss.broadcast = (data) => {
   });
 }
 
+const userCount = {
+  type: 'incomingUserCount',
+  count: 0
+};
+
+const colorArray = ['red', 'blue', 'green', 'purple']
+
+const randomColor = (arr) => {
+  let i = Math.floor(Math.random()*(arr.length - 1));
+  return arr[i];
+}
+
+const userColor = {
+  type: 'incomingUserColor',
+  color:''
+}
+
 wss.on('connection', (ws) => {
   console.log('Client connected');
 
-  const userCount = {
-    type: 'incomingUserCount',
-    count: wss.clients.size
-  };
-
-  console.log(userCount.count);
+  userCount.count = wss.clients.size;
+  userColor.color = randomColor(colorArray);
+  console.log(userColor.color);
 
   wss.broadcast(JSON.stringify(userCount));
+  ws.send(JSON.stringify(userColor));
 
   ws.on('message', (data) => {
     receivedData = JSON.parse(data);
@@ -63,12 +78,7 @@ wss.on('connection', (ws) => {
   ws.on('close', () => {
     console.log('Client disconnected');
 
-    const userCount = {
-      type: 'incomingUserCount',
-      count: wss.clients.size
-    };
-  
-    console.log(userCount.count);
+    userCount.count = wss.clients.size;
 
     wss.broadcast(JSON.stringify(userCount));
   });

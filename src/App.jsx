@@ -9,7 +9,8 @@ class App extends Component {
     this.state = {
       currentUser: 'Anonymous',
       messages: [],
-      userCount: 0
+      userCount: 0,
+      userColor: ''
     };
     this.socket = new WebSocket('ws://localhost:3001')
   }
@@ -48,6 +49,9 @@ class App extends Component {
         case 'incomingUserCount':
           this.setState({userCount: receievedData.count})
           break;
+        case 'incomingUserColor':
+          this.setState({userColor: receievedData.color})
+          break;
         default:
           throw new Error('Unknown event type' + receievedData.type);
       }
@@ -59,11 +63,14 @@ class App extends Component {
     return (
       <Fragment>
         <NavBar userCount={this.state.userCount}/>
-        <MessageList name={this.state.currentUser} messages={this.state.messages}/>
+        <MessageList
+        messages={this.state.messages}
+        />
         <ChatBar 
         name={this.state.currentUser} 
         sendToServer={this.sendToServer} 
         addNameChange={this.addNameChange}
+        userColor={this.state.userColor}
         />
       </Fragment>
     );

@@ -22,7 +22,8 @@ class ChatBar extends Component {
       const newMessage = {
         type: 'postMessage',
         username: this.props.name, 
-        content: contentInput.value
+        content: contentInput.value,
+        userColor: this.props.userColor
       };
       this.props.sendToServer(newMessage);
       contentInput.value = "";

@@ -50,19 +50,29 @@ body {
 }
 
 .message-content,
-.message-username {
+.message-username,
+.message-picture {
   overflow: hidden;
   margin: 5px;
   padding: 0 10px;
 }
 
-.message-content {
+.message-content,
+.message-picture {
   flex: 8;
+}
+
+.message-content{
+  word-wrap: break-word;
 }
 
 .message-username {
   flex: 2;
   font-weight: 700;
+}
+
+.picture {
+  width: 50%;
 }
 
 .navbar {

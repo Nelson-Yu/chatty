@@ -9,6 +9,7 @@ class ChatBar extends Component {
     if(event.key === 'Enter') {
       const contentInput = event.target;
       const newMessage = {
+        type: 'postMessage',
         username: this.props.name, 
         content: contentInput.value
       };

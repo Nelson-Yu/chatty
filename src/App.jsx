@@ -39,20 +39,11 @@ class App extends Component {
   handleNameChange = (event) => {
     this.setState({currentUser: event.target.value});
   }
-
-  addNewMessage = (event) => {
-    if(event.key === 'Enter'){
-      const currentUser = (this.state.currentUser.length <= 0 ? 'Anonymous' : this.state.currentUser);
-      const contentInput = event.target;
-      const newMessage = {
-        username: currentUser, 
-        content: contentInput.value
-      };
-      this.socket.send(JSON.stringify(newMessage))
-      contentInput.value = "";
-    }
-  }
   
+  addNewMessage = (message) => {
+    this.socket.send(JSON.stringify(message));
+  }
+
   render() {
     return (
       <Fragment>

@@ -13,7 +13,7 @@ class ChatBar extends Component {
         username: this.props.name, 
         content: contentInput.value
       };
-      this.props.addNewMessage(newMessage);
+      this.props.sendToServer(newMessage);
       contentInput.value = "";
     }
   }

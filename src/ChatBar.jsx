@@ -4,6 +4,18 @@ class ChatBar extends Component {
   constructor(props) {
     super(props);
   }
+
+  handleNameChange = (event) => {
+    // // const nameInput = event.target;
+    if(event.target.value !== this.props.name) {
+      let newName = {
+        type: 'postNotification',
+        content: `${this.props.name} changed their name to ${event.target.value}`
+      }
+      this.props.addNameChange(event.target.value);
+      this.props.sendToServer(newName);
+    }
+  }
   
   handleNewMessage = (event) => {
     if(event.key === 'Enter') {
@@ -18,14 +30,15 @@ class ChatBar extends Component {
     }
   }
 
+
   render() {
     return (
       <footer className="chatbar">
         <input 
         className="chatbar-username"
         placeholder="Your Name (Optional)"
-        value={this.props.name}
-        onChange={this.props.handleNameChange}
+        defaultValue={this.props.name}
+        onBlur={this.handleNameChange}
         />
         <input 
         className = "chatbar-message"

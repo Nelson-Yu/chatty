@@ -19,8 +19,8 @@ class App extends Component {
     this.setState({messages: newMessages});
   }
   
-  handleNameChange = (event) => {
-    this.setState({currentUser: event.target.value});
+  addNameChange = (name) => {
+    this.setState({currentUser: name});
   }
   
   sendToServer = (message) => {
@@ -41,8 +41,9 @@ class App extends Component {
         case 'incomingMessage':
           this.addMessage(receievedData);
           break;
-        // case 'incomingNotification';
-        //   break;
+        case 'incomingNotification':
+          this.addMessage(receievedData);
+          break;
         default:
           throw new Error('Unknown event type' + receievedData.type);
       }
@@ -54,11 +55,11 @@ class App extends Component {
     return (
       <Fragment>
         <NavBar/>
-        <MessageList messages={this.state.messages}/>
+        <MessageList name={this.state.currentUser} messages={this.state.messages}/>
         <ChatBar 
         name={this.state.currentUser} 
         sendToServer={this.sendToServer} 
-        handleNameChange={this.handleNameChange}
+        addNameChange={this.addNameChange}
         />
       </Fragment>
     );

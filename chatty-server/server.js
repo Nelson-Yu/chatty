@@ -43,6 +43,10 @@ wss.on('connection', (ws) => {
       receivedData.type = 'incomingMessage';
     }
 
+    if(receivedData.type === 'postNotification') {
+      receivedData.type = 'incomingNotification';
+    }
+
     wss.broadcast(JSON.stringify(receivedData));
   });
 

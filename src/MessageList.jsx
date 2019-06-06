@@ -6,6 +6,7 @@ class MessageList extends Component {
     const eachMessage = this.props.messages.map((message) => 
     <Message 
     key={message.id} 
+    type={message.type}
     user={message.username} 
     content={message.content}
     />);
@@ -13,9 +14,6 @@ class MessageList extends Component {
     return (
       <main className="messages">
         {eachMessage}
-        <div className="message system">
-          Anonymous1 changed their name to nomnom.
-        </div>
       </main>
     );
   }

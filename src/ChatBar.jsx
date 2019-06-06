@@ -6,9 +6,8 @@ class ChatBar extends Component {
   }
 
   handleNameChange = (event) => {
-    // // const nameInput = event.target;
     if(event.target.value !== this.props.name) {
-      let newName = {
+      const newName = {
         type: 'postNotification',
         content: `${this.props.name} changed their name to ${event.target.value}`
       }

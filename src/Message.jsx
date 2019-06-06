@@ -1,18 +1,18 @@
 import React, {Component, Fragment} from 'react';
 
+const checkLink = (content) => {
+  const regExp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&’\(\)\*\+,;=.]+(?:png|jpg|jpeg|gif|svg)+$/;
+  const pictureLink = content.match(regExp);
+  if(pictureLink) {
+    return pictureLink[0];
+  }
+  return false;
+}
+
 class Message extends Component {
 
-  const checkLink = (content) => {
-    const regExp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&’\(\)\*\+,;=.]+(?:png|jpg|jpeg|gif|svg)+$/;
-    const pictureLink = content.match(regExp);
-    if(pictureLink) {
-      return pictureLink[0];
-    }
-    return false;
-  }
-
   render() {
-    const validLink = this.checkLink(this.props.content);
+    const validLink = checkLink(this.props.content);
 
     return this.props.type === 'incomingMessage' ? (
       <Fragment>

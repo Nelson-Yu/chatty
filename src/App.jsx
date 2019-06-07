@@ -29,6 +29,10 @@ class App extends Component {
     this.socket.send(JSON.stringify(message));
   }
 
+  scrollToBottom = () => {
+    this.messageEnd.scrollIntoView({ behavior: 'smooth'});
+  }
+
   componentDidMount() {
     console.log("componentDidMount <App />");
 
@@ -42,6 +46,7 @@ class App extends Component {
       switch(receievedData.type) {
         case 'incomingMessage':
           this.addMessage(receievedData);
+          this.scrollToBottom();
           break;
         case 'incomingNotification':
           this.addMessage(receievedData);
@@ -66,6 +71,7 @@ class App extends Component {
         <MessageList
         messages={this.state.messages}
         />
+        <div ref={el => {this.messageEnd = el; }}/>
         <ChatBar 
         name={this.state.currentUser} 
         sendToServer={this.sendToServer} 

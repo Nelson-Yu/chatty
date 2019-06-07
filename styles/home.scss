@@ -52,11 +52,6 @@ body {
   padding: 5px;
 }
 
-@media only screen and (max-width: 600px) {
-  .message {
-    flex-direction: column;
-  }
-}
 
 .message.system {
   font-style: italic;
@@ -123,5 +118,14 @@ body {
 }
 
 .navbar .logo {
-  height: 70px;
+    height: 70px;
+}
+
+@media only screen and (max-width: 600px) {
+  .message {
+    flex-direction: column;
+  }
+  .chatbar {
+    flex-direction: column;
+  }
 }

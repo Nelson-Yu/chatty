@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 function ChatBar(props) {
   const { name, addNameChange, sendToServer, userColor} = props;
 
+  // A function that handles the user name change event and creates a 'message' to send to the WebSocket Server
   const handleNameChange = (event) => {
     if(event.target.value !== name) {
       const newName = {
@@ -13,7 +14,8 @@ function ChatBar(props) {
       sendToServer(newName);
     }
   }
-  
+
+  // A function that handles a new message event and creates a 'message' to send to the WebSocket Server, then resets input to an empty string
   const handleNewMessage = (event) => {
     if(event.key === 'Enter') {
       const contentInput = event.target;
@@ -41,7 +43,6 @@ function ChatBar(props) {
       placeholder="Type a message and hit ENTER"
       onKeyDown={handleNewMessage}
       />
-      
     </footer>
   );
 }

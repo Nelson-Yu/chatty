@@ -21,6 +21,7 @@ const wss = new SocketServer({ server });
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 
+// Sets up broadcast to send data to every client with an open WebSocket
 wss.broadcast = (data) => {
   wss.clients.forEach(client => {
     if (client.readyState === WebSocket.OPEN) {
@@ -29,6 +30,7 @@ wss.broadcast = (data) => {
   });
 }
 
+// Defined a userCount message to send to client
 const userCount = {
   type: 'incomingUserCount',
   count: 0
@@ -36,11 +38,13 @@ const userCount = {
 
 const colorArray = ['#D00000','#25CED1', '#064789', '#427AA1', '#E54B4B', '#470024', '#5B1865', '#EC4E20', '#A3E7EC']
 
+// A function that randomizes the a color from colorsArray
 const randomColor = (arr) => {
   let i = Math.floor(Math.random()*(arr.length - 1));
   return arr[i];
 }
 
+// Defined a userColor message to send to client
 const userColor = {
   type: 'incomingUserColor',
   color:''
@@ -49,9 +53,11 @@ const userColor = {
 wss.on('connection', (ws) => {
   console.log('Client connected');
 
+  // Set userCount's count to the amount of clients connected to the ws server
   userCount.count = wss.clients.size;
+
+  // Sets userColor's color to a random color from the colorArray
   userColor.color = randomColor(colorArray);
-  console.log(userColor.color);
 
   wss.broadcast(JSON.stringify(userCount));
   ws.send(JSON.stringify(userColor));
@@ -60,6 +66,7 @@ wss.on('connection', (ws) => {
     receivedData = JSON.parse(data);
     receivedData.id = uuidv1();
 
+    //Check to see the type of the received post from client
     if(receivedData.type === 'postMessage') {
       receivedData.type = 'incomingMessage';
     }
@@ -75,6 +82,7 @@ wss.on('connection', (ws) => {
   ws.on('close', () => {
     console.log('Client disconnected');
 
+    // Updates user count when a client is closed
     userCount.count = wss.clients.size;
 
     wss.broadcast(JSON.stringify(userCount));

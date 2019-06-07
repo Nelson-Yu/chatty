@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 
+// A function that uses the regExp to check if the message content has a url ending with an image/gif type
 const checkLink = (content) => {
   const regExp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&’\(\)\*\+,;=.]+(?:png|jpg|jpeg|gif|svg)+$/;
   const pictureLink = content.match(regExp);
@@ -14,6 +15,7 @@ function Message(props) {
 
   const validLink = checkLink(content);
 
+  // Returns either message or notification depending on the received message from the WebSocket Server
   return type === 'incomingMessage' ? (
     <Fragment>
       <div className="message">

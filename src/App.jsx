@@ -15,24 +15,30 @@ class App extends Component {
     this.socket = new WebSocket('ws://localhost:3001')
   }
   
+  // A function that adds a new message to the this.state.messages array and then sets the messages to include the new message
   addMessage = (message) => {
     const oldMessages = this.state.messages;
     const newMessages = oldMessages.concat(message);
     this.setState({messages: newMessages});
   }
   
+  // A function that adds a name change and sets the state to the given name
   addNameChange = (name) => {
     this.setState({currentUser: name});
   }
   
+  // A function that JSON stringify's a message and sends the message to the WebSocket server
   sendToServer = (message) => {
     this.socket.send(JSON.stringify(message));
   }
 
+  // A function that allows for automatic downwards scrolling of the message container
   scrollToBottom = () => {
     this.messageEnd.scrollIntoView({ behavior: 'smooth'});
   }
 
+  // Lifecycle method that connects to and receives data from the WebSocket server
+  // Depending on the incoming message type different functions are called
   componentDidMount() {
     console.log("componentDidMount <App />");
 

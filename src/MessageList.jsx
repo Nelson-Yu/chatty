@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Message from './Message.jsx'
 
+// A functional component that loops over each props.messages and sends the data down to the message child funcitional component
 function MessageList(props) {
   const eachMessage = props.messages.map((message) => 
   <Message 

@@ -9,25 +9,24 @@ const checkLink = (content) => {
   return false;
 }
 
-class Message extends Component {
+function Message(props) {
+  const { content, type, color, user } = props;
 
-  render() {
-    const validLink = checkLink(this.props.content);
+  const validLink = checkLink(content);
 
-    return this.props.type === 'incomingMessage' ? (
-      <Fragment>
-        <div className="message">
-          <span className="message-username" style={{color:this.props.color}}>{this.props.user}</span>
-          {!validLink && <span className="message-content">{this.props.content}</span>}
-          {validLink && <span className="message-picture"><img className="picture" src={validLink}/></span>}
-        </div>
-      </Fragment>
-    ) : (
-        <div className="message system">
-          {this.props.content}
-        </div>
-    );
-  }
+  return type === 'incomingMessage' ? (
+    <Fragment>
+      <div className="message">
+        <span className="message-username" style={{color:color}}>{user}</span>
+        {!validLink && <span className="message-content">{content}</span>}
+        {validLink && <span className="message-picture"><img className="picture" src={validLink}/></span>}
+      </div>
+    </Fragment>
+  ) : (
+      <div className="message system">
+        {content}
+      </div>
+  );
 }
 
 export default Message;

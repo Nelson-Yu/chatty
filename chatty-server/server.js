@@ -60,9 +60,6 @@ wss.on('connection', (ws) => {
     receivedData = JSON.parse(data);
     receivedData.id = uuidv1();
 
-    console.log(receivedData.id);
-    console.log(`User ${receivedData.username} said ${receivedData.content}`);
-
     if(receivedData.type === 'postMessage') {
       receivedData.type = 'incomingMessage';
     }

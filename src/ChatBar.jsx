@@ -1,50 +1,49 @@
 import React, {Component} from 'react';
 
-class ChatBar extends Component {
+function ChatBar(props) {
+  const { name, addNameChange, sendToServer, userColor} = props;
 
-  handleNameChange = (event) => {
-    if(event.target.value !== this.props.name) {
+  const handleNameChange = (event) => {
+    if(event.target.value !== name) {
       const newName = {
         type: 'postNotification',
-        content: `${this.props.name} changed their name to ${event.target.value}`
+        content: `${name} changed their name to ${event.target.value}`
       }
-      this.props.addNameChange(event.target.value);
-      this.props.sendToServer(newName);
+      addNameChange(event.target.value);
+      sendToServer(newName);
     }
   }
   
-  handleNewMessage = (event) => {
+  const handleNewMessage = (event) => {
     if(event.key === 'Enter') {
       const contentInput = event.target;
       const newMessage = {
         type: 'postMessage',
-        username: this.props.name, 
+        username: name, 
         content: contentInput.value,
-        userColor: this.props.userColor
+        userColor: userColor
       };
-      this.props.sendToServer(newMessage);
+      sendToServer(newMessage);
       contentInput.value = "";
     }
   }
 
-  render() {
-    return (
-      <footer className="chatbar">
-        <input 
-        className="chatbar-username"
-        placeholder="Your Name (Optional)"
-        defaultValue={this.props.name}
-        onBlur={this.handleNameChange}
-        />
-        <input 
-        className = "chatbar-message"
-        placeholder="Type a message and hit ENTER"
-        onKeyDown={this.handleNewMessage}
-        />
-        
-      </footer>
-    );
-  }
+  return (
+    <footer className="chatbar">
+      <input 
+      className="chatbar-username"
+      placeholder="Your Name (Optional)"
+      defaultValue={name}
+      onBlur={handleNameChange}
+      />
+      <input 
+      className = "chatbar-message"
+      placeholder="Type a message and hit ENTER"
+      onKeyDown={handleNewMessage}
+      />
+      
+    </footer>
+  );
 }
 
 export default ChatBar;

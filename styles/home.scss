@@ -1,18 +1,21 @@
+$primary-color: #011a27;
+$secondary-color: #F0810F;
+$font-size: 18px;
+
 h1 {
-  color: tomato;
+  color: $primary-color;
 }
 
 body {
   background: white;
   color: black;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: $font-size;
   margin: 70px 0;
 }
 
 .chatbar {
-  background: tomato;
-  border-top: 1px solid black;
+  background: $primary-color;
   bottom: 0;
   display: flex;
   left: 0;
@@ -23,7 +26,8 @@ body {
 
 .chatbar-message,
 .chatbar-username {
-  border: 1px solid black;
+  border: 1px solid $secondary-color;
+  border-radius: 3px;
   display: block;
   height: 40px;
   line-height: 40px;
@@ -39,9 +43,19 @@ body {
   flex: 2;
 }
 
+.messages {
+  padding: 10px 0px;
+}
+
 .message {
   display: flex;
   padding: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .message {
+    flex-direction: column;
+  }
 }
 
 .message.system {
@@ -54,7 +68,8 @@ body {
 .message-picture {
   overflow: hidden;
   margin: 5px;
-  padding: 0 10px;
+  padding: 10px;
+  word-wrap: break-word;
 }
 
 .message-content,
@@ -63,7 +78,9 @@ body {
 }
 
 .message-content{
-  word-wrap: break-word;
+  background-color: $primary-color;
+  color: $secondary-color;
+  border-radius: 3px;
 }
 
 .message-username {
@@ -76,9 +93,8 @@ body {
 }
 
 .navbar {
-  background: tomato;
-  border-bottom: 1px solid black;
-  height: 60px;
+  background: $primary-color;
+  height: 70px;
   left: 0;
   padding: 0 10px;
   position: fixed;
@@ -87,19 +103,25 @@ body {
 }
 
 .navbar-brand {
-  color: inherit;
+  color: $secondary-color;
   display: block;
   float: left;
   font-weight: 700;
-  font-size: 28px;
-  height: 60px;
-  line-height: 60px;
+  font-size: 35px;
+  height: 70px;
+  line-height: 80px;
   padding: 0 10px;
   text-decoration: none;
 }
 
 .navbar .users-online {
-  font-size: 18px;
+  color: $secondary-color;
+  font-size: $font-size;
   padding: 0 10px;
   float: right;  
+  line-height: 75px;
+}
+
+.navbar .logo {
+  height: 70px;
 }

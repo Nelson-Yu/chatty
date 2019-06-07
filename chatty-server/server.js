@@ -34,7 +34,7 @@ const userCount = {
   count: 0
 };
 
-const colorArray = ['red', 'blue', 'green', 'purple']
+const colorArray = ['#D00000','#25CED1', '#064789', '#427AA1', '#E54B4B', '#470024', '#5B1865', '#EC4E20', '#A3E7EC']
 
 const randomColor = (arr) => {
   let i = Math.floor(Math.random()*(arr.length - 1));

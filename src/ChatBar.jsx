@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 
 class ChatBar extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   handleNameChange = (event) => {
     if(event.target.value !== this.props.name) {
@@ -29,7 +26,6 @@ class ChatBar extends Component {
       contentInput.value = "";
     }
   }
-
 
   render() {
     return (

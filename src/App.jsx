@@ -63,20 +63,21 @@ class App extends Component {
     }
   }
 
-
   render() {
+    const {currentUser, messages, userCount, userColor} = this.state;
+
     return (
       <Fragment>
-        <NavBar userCount={this.state.userCount}/>
+        <NavBar userCount={userCount}/>
         <MessageList
-        messages={this.state.messages}
+        messages={messages}
         />
         <div ref={el => {this.messageEnd = el; }}/>
         <ChatBar 
-        name={this.state.currentUser} 
+        name={currentUser} 
         sendToServer={this.sendToServer} 
         addNameChange={this.addNameChange}
-        userColor={this.state.userColor}
+        userColor={userColor}
         />
       </Fragment>
     );

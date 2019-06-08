@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Fragment} from 'react';
 
 // A function that uses the regExp to check if the message content has a url ending with an image/gif type
 const checkLink = (content) => {

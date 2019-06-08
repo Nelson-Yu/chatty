@@ -76,6 +76,9 @@ body {
   background-color: $primary-color;
   color: $secondary-color;
   border-radius: 3px;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
 }
 
 .message-username {
@@ -85,6 +88,10 @@ body {
 
 .picture {
   width: 40%;
+  border-radius: 3px;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
 }
 
 .navbar {

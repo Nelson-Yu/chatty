@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Message from './Message.jsx'
 
 // A functional component that loops over each props.messages and sends the data down to the message child funcitional component

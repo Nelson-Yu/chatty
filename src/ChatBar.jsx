@@ -1,10 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 function ChatBar(props) {
   const { name, addNameChange, sendToServer, userColor} = props;
 
   // A function that handles the user name change event and creates a 'message' to send to the WebSocket Server
   const handleNameChange = (event) => {
+    if (event.target.value === '') {
+      return;
+    }
     if(event.target.value !== name) {
       const newName = {
         type: 'postNotification',
@@ -26,7 +29,7 @@ function ChatBar(props) {
         userColor: userColor
       };
       sendToServer(newMessage);
-      contentInput.value = "";
+      contentInput.value = '';
     }
   }
 

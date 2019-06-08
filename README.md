@@ -1,45 +1,56 @@
-React Boilerplate
+Chatty
 =====================
 
-A minimal and light dev environment for ReactJS.
+Chatty is a SPA(Single-Page-Application) built with ReactJS, Webpack, and Websockets. This real-time app allows users to communicate with each other without delay.
 
-### Usage
+## Final Product
 
-Clone the boilerplate and create your own git repo.
+!["Screenshot of Chatty-1"](https://github.com/Nelson-Yu/lighthouse-labs-chatty-app/blob/master/docs/Chatty-1.png)
+!["Screenshot of Chatty-2"](https://github.com/Nelson-Yu/lighthouse-labs-chatty-app/blob/master/docs/Chatty-2.png)
+!["Screenshot of Chatty-3"](https://github.com/Nelson-Yu/lighthouse-labs-chatty-app/blob/master/docs/Chatty-3.png)
 
-```
-git clone git@github.com:lighthouse-labs/react-simple-boilerplate.git
-cd react-simple-boilerplate
-git remote rm origin
-git remote add origin [YOUR NEW REPOSITORY]
-# Manually update your package.json file
-```
-
-Install the dependencies and start the server.
+## Getting Started
+Clone this project. Install the dependencies for this project. Change diectory into chatty-server, install the dependencies for the WebSocket server. Start up both servers in serparate terminals. 
 
 ```
-npm install
-npm start
-open http://localhost:3000
+1. git clone git@github.com:Nelson-Yu/lighthouse-labs-chatty-app.git chatty-app
+2. cd chatty-app
+3. npm install
+4. npm start
+5. cd chatty-server
+6. npm install
+7. npm start
+8. open http://localhost:3000
 ```
 
-### Static Files
+## Usage
 
-You can store static files like images, fonts, etc in the `build` folder.
+1. Enter a name or stay as 'Anonymous'
+2. From the header, see if other users are online
+3. Type a message and press ENTER to send
+4. Have fun and chat away!
 
-For example, if you copy a file called my_image.png into the build folder you can access it using `http://localhost:3000/build/my_image.png`.
+## Tech Stack
+* ReactJS
+* WebPack with Babel and Webpack-dev-server
+* WebSockets(ws) with NodeJS
+* CSS, SASS, HTML5, JSX
 
-### Linting
+## Dependencies
 
-This boilerplate project includes React ESLint configuration.
-
-```
-npm run lint
-```
-
-### Dependencies
-
+Chatty server:
 * React
 * Webpack
 * [babel-loader](https://github.com/babel/babel-loader)
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+* CSS-loader
+* SASS-loader
+* Node-sass
+* Style-loader
+* SockJS-client
+* ESlint 
+
+WebSocket server:
+* Express
+* [ws](https://github.com/websockets/ws)
+* uuid
